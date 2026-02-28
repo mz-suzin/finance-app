@@ -1,43 +1,4 @@
-<div class="container">
-  <header>
-    <h1>Personal Finance App</h1>
-    <div class="api-status" [class.online]="apiStatus === 'Connected'" [class.offline]="apiStatus !== 'Connected'">
-      API Status: {{ apiStatus }}
-    </div>
-  </header>
-
-  <main>
-    <section class="transactions-section">
-      <h2>Recent Transactions</h2>
-      
-      @if (loading) {
-        <p>Loading transactions...</p>
-      } @else if (transactions.length === 0) {
-        <p>No transactions found. Add some data to the database!</p>
-      } @else {
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (transaction of transactions; track transaction.id) {
-              <tr>
-                <td>{{ transaction.date }}</td>
-                <td>{{ transaction.description }}</td>
-                <td>{{ transaction.category }}</td>
-                <td [class.positive]="transaction.amount > 0" [class.negative]="transaction.amount < 0">
-                  {{ transaction.amount | currency }}
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      }
-    </section>
-  </main>
-</div>
+<app-header></app-header>
+<main class="layout-main">
+  <router-outlet></router-outlet>
+</main>
